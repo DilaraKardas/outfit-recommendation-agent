@@ -1,4 +1,5 @@
 import json
+import random
 print("agent started")
 
 with open("clothes.json", "r", encoding= "utf-8") as file:
@@ -23,3 +24,40 @@ with open("clothes.json", "r", encoding= "utf-8") as file:
     else:
         for item in matching_clothes:
             print("-", item["name"], f"({item['category']})")
+
+
+    # get weather condition
+    weather_condition = input("What is the weather like today? (e.g., warm, cold, rainy): ").strip().lower()
+
+    print("Mood:", user_mood)
+    print("Weather:", weather_condition)
+
+    # filter clothes based on weather
+
+    for item in clothes:
+        mood_match = user_mood in item["mood"]
+        weather_match = (item["weather"] == "general" or item["weather"] == weather_condition) #hava durumuna göre özel kıyafet önerilir, havaya özel kıyafet yoksa genel olanlardan önerilir 
+
+        if mood_match and weather_match:
+            matching_clothes.append(item)
+
+    #seperate by category
+    tops = [item for item in matching_clothes if item["category"] == "top"]
+    bottoms = [item for item in matching_clothes if item["category"] == "bottom"]
+
+    #recommennd outfit
+
+    print("\nOutfit recommendation:")
+
+    if not tops or not bottoms:
+        print("Not enaugh matching clothes to create a full outfit")
+    else:
+        selected_top = random.choice(tops) #şimdilik random, sonra zeka yüklenecek
+        selected_bottom = random.choice(bottoms)
+
+        print("Top :", selected_top["name"])
+        print("Bottom :", selected_bottom["name"])
+
+ 
+             
+            
