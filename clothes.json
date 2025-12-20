@@ -1,0 +1,20 @@
+[
+    {
+        "id":1,
+        "category": "top",
+        "name": "White T-shirt",
+        "season": "summer",
+        "weather": "warm",
+        "mood": ["happy", "energetic"],
+        "style": "casual"
+    },
+    {
+        "id":2,
+        "category": "bottom",
+        "name": "Jean Pants",
+        "season": "general",
+        "weather": "general",
+        "mood": ["relaxed", "happy"],
+        "style": "casual"
+    }
+]
