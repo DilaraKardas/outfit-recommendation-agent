@@ -36,7 +36,7 @@ with open("clothes.json", "r", encoding= "utf-8") as file:
 
     for item in clothes:
         mood_match = user_mood in item["mood"]
-        weather_match = (item["weather"] == "general" or item["weather"] == weather_condition) #hava durumuna göre özel kıyafet önerilir, havaya özel kıyafet yoksa genel olanlardan önerilir 
+        weather_match = (item["weather"] == "all" or item["weather"] == weather_condition) #hava durumuna göre özel kıyafet önerilir, havaya özel kıyafet yoksa genel olanlardan önerilir 
 
         if mood_match and weather_match:
             matching_clothes.append(item)
