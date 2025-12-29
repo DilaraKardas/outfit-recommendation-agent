@@ -1,7 +1,6 @@
 def matches_weather(item, weather):
     return "all" in item["weather"] or weather in item["weather"]
 
-
 def matches_occasion(item, occasion):
     return occasion in item["occasion"]
 
