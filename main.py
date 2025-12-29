@@ -1,31 +1,31 @@
-import sys
-import os
-sys.path.append(os.path.join(os.getcwd(), 'logic'))
 import json
-import random
 from logic.filters import hard_filter
 from logic.outfit_engine import group_by_category, build_outfit, print_outfit 
+from services.weather_service import get_weather_by_city
+from data.loader import load_items
+
+city = input("Enter your city: ").strip()
+mood = input("How are you feeling today? ").strip().lower()
+occasion = input("What is the occasion? ").strip().lower()
+style = input("Preferred style: ").strip().lower()
+
+weather = get_weather_by_city(city)
 
 
-with open("data/clothes.json", "r", encoding= "utf-8") as file:
-    clothes = json.load(file)
+print(f"Weather info: {weather}")
 
+items = load_items()
 
-    user_input = {
-        "mood": "happy",
-        "weather": "warm", 
-        "season": "summer",
-        "occasion": "hangout",
-        "style": "casual" 
+user_input = {
+        "weather": weather,
+        "occasion": occasion,
+        "style": style,
+        "season": "all"  # şimdilik sabit
     }
 
-    filtered_items = hard_filter(clothes, user_input)
-    print("filtered items: ")
+filtered_items = hard_filter(items, user_input)
 
-    for item in filtered_items:
-        print("-", item["name"], f"({item['category']})")
+grouped = group_by_category(filtered_items)
+outfit = build_outfit(grouped, weather)
 
-
-    grouped_items = group_by_category(filtered_items)
-    outfit = build_outfit(grouped_items, user_input["weather"])
-    print_outfit(outfit)
+print_outfit(outfit)

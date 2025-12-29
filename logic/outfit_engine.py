@@ -12,6 +12,7 @@ def group_by_category(items):
 
 def build_outfit(grouped_items, weather):
 
+    # şimdilik ilk uygun olanı seçiyor
     outfit = {}
     outfit["top"] = grouped_items.get("top", [None])[0]
     outfit["bottom"] = grouped_items.get("bottom", [None])[0]

@@ -20,7 +20,7 @@
         "layer_role": "base",
         "name": "Off-Shoulder Blouse",
         "season": ["all"],
-        "weather": ["all"],
+        "weather": ["cool"],
         "mood": ["happy", "energetic"],
         "style": ["casual", "smart-casual", "", "date", "business-casual", "elegant"],
         "occasion": ["work", "meeting", "hangout", "date"],
