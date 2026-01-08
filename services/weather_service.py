@@ -5,7 +5,7 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
 def get_weather_by_city(city_name):
-    params = {
+    params = {                                                                                              
         "q": city_name,
         "appid": API_KEY,
         "units": "metric"

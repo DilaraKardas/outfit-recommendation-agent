@@ -1,6 +1,7 @@
 import json
 from logic.filters import hard_filter
 from logic.outfit_engine import group_by_category, build_outfit, print_outfit 
+from logic.scoring import select_best_items
 from services.weather_service import get_weather_by_city
 from data.loader import load_items
 
@@ -20,12 +21,13 @@ user_input = {
         "weather": weather,
         "occasion": occasion,
         "style": style,
-        "season": "all"  # şimdilik sabit
+        "season": "all",  # şimdilik sabit
+        "mood" : mood
     }
 
 filtered_items = hard_filter(items, user_input)
 
-grouped = group_by_category(filtered_items)
-outfit = build_outfit(grouped, weather)
+final_outfit = select_best_items(filtered_items, user_input)
 
-print_outfit(outfit)
+for layer, item in final_outfit.items():
+    print(f"{layer.upper()}: {item['name']}")
