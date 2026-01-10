@@ -4,6 +4,7 @@ from logic.outfit_engine import group_by_category, build_outfit, print_outfit
 from logic.scoring import select_best_items
 from services.weather_service import get_weather_by_city
 from data.loader import load_items
+from logic.explain import explain_item
 
 city = input("Enter your city: ").strip()
 mood = input("How are you feeling today? ").strip().lower()
@@ -27,7 +28,9 @@ user_input = {
 
 filtered_items = hard_filter(items, user_input)
 
-final_outfit = select_best_items(filtered_items, user_input)
-
-for layer, item in final_outfit.items():
-    print(f"{layer.upper()}: {item['name']}")
+final_outfit = select_best_items(filtered_items, user_input)   
+print("\n--- FINAL OUTFIT ---\n")
+for category, item in final_outfit.items():
+    print(f"{category.upper()}: {item['item']['name']}")
+    explanation = explain_item(item)
+    print(f"Explanation: {explanation}\n")
