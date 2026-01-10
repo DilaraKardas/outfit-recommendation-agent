@@ -1,14 +1,18 @@
-def explain_item(scored_item):
-    item =scored_item["item"]
-    explanation = scored_item["explanation"]
+from services.llm_service import generate_explanation_with_llm
 
-    lines = []
-    for exp in explanation:
-        if "formality" in exp:
-            lines.append("This piece is formal enough for the chosen occasion.")
-        elif "style" in exp:
-            lines.append("This piece matches preferred style.")
-        elif "confidence" in exp:
-            lines.append("This piece could have positive effect to boost your confidence based on your mood.")
+#llm çalışmazsa kural tabanlı açıklama döner
+def build_rule_explanation(scored_item):
+    return " ".join(scored_item["explanation"])
 
-        return f"{item['name']} selected because: " + " ".join(lines)
+def explain_item(scored_item, user_input, client = None, use_llm=True):
+    rule_text = " ".join(scored_item["explanation"])
+
+    if not use_llm or client is None:
+        return rule_text
+    
+    return generate_explanation_with_llm(
+        client = client,
+        item_name = scored_item["item"]["name"],
+        rule_explanation = rule_text,
+        user_input = user_input
+    )
