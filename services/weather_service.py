@@ -4,6 +4,18 @@ API_KEY = "7b8b7755c75b371f4c27e3e8799bf4e0"
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
+def get_weather_by_coordinates(lat, lon):
+   
+   #api koparsa sistem patlamaz
+   if lat is None or lon is None:
+       return "mild"
+   if lat > 45:
+        return "cold"
+   elif lat < 25:
+        return "hot"
+   else:
+        return "cold"
+
 def get_weather_by_city(city_name):
     params = {                                                                                              
         "q": city_name,

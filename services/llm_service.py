@@ -5,8 +5,7 @@ def generate_explanation_with_llm(client, item_name, rule_explanation, user_inpu
     -Mood: {user_input['mood']}
     -Occasion: {user_input['occasion']}
     -Style: {user_input['style']}
-    -Weather: {user_input['weather']}
-
+    -Weather: {user_input.get('weather', 'bilinmiyor')}
     Item selected: {item_name}
 
     Technical reasoning (the "Why"):
@@ -40,7 +39,7 @@ def generate_llm_explanation(outfit, user_input, client):
     - Mood: {user_input['mood']}
     - Occasion: {user_input['occasion']}
     - Style: {user_input['style']}
-    - Weather: {user_input['weather']}
+    - Weather: {user_input.get('weather', 'bilinmiyor')}
 
     Selected outfit:
     {item_list}

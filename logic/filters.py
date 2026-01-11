@@ -25,8 +25,9 @@ def hard_filter(items, user_input):
             continue
         if not matches_style(item, user_input["style"]):
             continue
-        if not matches_season(item, user_input["season"]):
-            continue
+        if "season" in user_input:  # Season varsa kontrol et
+            if not matches_season(item, user_input["season"]):
+                continue
 
         filtered.append(item)
         

@@ -40,11 +40,11 @@ client = genai.Client()
 for category, scored_item in final_outfit.items():
     print(f"{category.upper()}: {scored_item['item']['name']}")
 
-    explanation = explain_item(
-        scored_item = scored_item,
-        user_input = user_input,
-        client = client
-    )
+    # explanation = explain_item(
+    #     scored_item = scored_item,
+    #     user_input = user_input,
+    #     client = client
+    # )
 
-    print(f"Stil önerisi: {explanation}\n")
+    # print(f"Stil önerisi: {explanation}\n")
 

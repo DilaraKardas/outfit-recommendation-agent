@@ -32,7 +32,7 @@ def confidence_score(item, user_input):
     explanation = []
 
     # emotional support logic
-    if user_input["mood"] in ["sad", "depressed", "anxious"]:
+    if user_input["mood"] in ["sad", "depressed", "anxious", "stressed"]:
         if item.get("confidence_boost", False) is True:
             score += 2
             explanation.append("confidence-boosting item for low mood (+2)")
